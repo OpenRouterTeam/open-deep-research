@@ -116,6 +116,10 @@ export async function POST(request: Request) {
     return new Response('Model not found', { status: 404 });
   }
 
+  if (model.apiIdentifier.startsWith('openrouter/') && !process.env.OpenRouter_AI_s_API_KEY) {
+    return new Response('OpenRouter API key not configured', { status: 500 });
+  }
+
   const coreMessages = convertToCoreMessages(messages);
   const userMessage = getMostRecentUserMessage(coreMessages);
 
