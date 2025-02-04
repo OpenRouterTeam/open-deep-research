@@ -1,3 +1,7 @@
-import type { Experimental_LanguageModelV1Middleware } from 'ai';
+import type { Message } from 'ai';
 
-export const customMiddleware: Experimental_LanguageModelV1Middleware = {};
+export const customMiddleware = {
+  async transformMessages(messages: Message[]) {
+    return messages;
+  }
+};
